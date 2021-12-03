@@ -1,0 +1,24 @@
+1.
+
+
+2.
+
+
+3.
+
+
+4. Virus Lab closing
+- do a hamiltonian path check using backtracking
+(probably can't find 1) so 0 
+
+
+5.
+
+
+6. Machine Learning (Python)
+- Linear regression;
+basically guess the numeric data of datasets
+
+
+
+sunwoo kim
