@@ -39,28 +39,25 @@ Sample Output 1
 928
 """
 
-def subarraySum(i, s=[]):
-    if (i > len(arr)):
+def subarraySum(i=0, s=[]):
+    global total
+    total += sum(s)
+    if (i > n):
         return
-    
-    if sorted(s) not in subarr:
-        subarr.append(s)
-    for k in range(i, len(arr)):
-        if arr[k] not in s:
-            subarraySum(i+1, s+[arr[k]])
+
+    # duplicate check is here now (i, n); instead of checking duplicate, just skip the index
+    for k in range(i, n):       
+        subarraySum(k+1, s+[arr[k]])
 
 ######################
-# since we are taking sorted sub array to distinguish duplicates,
-# we must sort the input first
-arr = sorted(list(map(int, input().split())))
-subarr = []
-subarraySum(0)
-print(subarr)
+# sorting step makes it very hard when it comes to computation time.
+# infact, it wasn't the sorting -- it was the range(n) --> range(i, n) that made a difference
 
+# different approach:
+# just sum it as you iterate
+
+arr = list(map(int, input().split()))
+n = len(arr)
 total = 0
-for l in subarr:
-    total += sum(l)
+subarraySum()
 print(total)
-
-# this try took too long, with unnecessary sorting steps
-# that slowed down the algorithm
