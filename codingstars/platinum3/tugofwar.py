@@ -14,7 +14,7 @@ n이 홀수 인 다른 예를 생각해 봅시다.
 크기가 같고(홀수는 1개 차이), 요소(item) 합계 차이는 최소가 되도록 2개의 부분 집합으로 나누었을 때,
 부분 집합의 요소 합계를 출력하여 봅시다.
 
-*문제의 설명을 위하여 ‘집합’이라는 용어를 사용하였지만 python으로 코딩할 때에는 집합 형(set type)의 사용을 피하여야 합니다. set type은 중복을 허용하지 않기 때문입니다.
+*문제의 설명을 위하여 '집합' 이라는 용어를 사용하였지만 python으로 코딩할 때에는 집합 형(set type)의 사용을 피하여야 합니다. set type은 중복을 허용하지 않기 때문입니다.
 
 
 // 결국은 하나의 배열이 주어졌을때 반으로 나뉘는 (or 1명의 차이) 최소한의 
@@ -42,8 +42,37 @@ Sample Input 2
 Sample Output 2
 120 121
 """
+def getAllSubArray(i=0, s=[]):
+    if (i == n//2):
+        if sorted(s) not in subarr:
+            subarr.append(s)
+        return
+    
+    for k in range(i, n):
+        if people[k] not in s:
+            getAllSubArray(i+1, s+[people[k]])
 
+def getOtherHalf(array):
+    other = []
+    for p in people:
+        if p not in array:
+            other.append(p)
+    return other
+    
+################################################
+people = sorted(list(map(int, input().split())))
+subarr = []
+n = len(people)
+getAllSubArray()
 
-
-people = list(map(int, input().split()))
-print(people)
+m = people[-1]
+min_diff_pair = 0
+for s in subarr:
+    other = getOtherHalf(s)
+    pair = (s, other)
+    diff = sum(s) - sum(other)
+    if abs(0 - diff) < m:
+        m = abs(0 - diff)
+        min_diff_pair = pair
+        
+print(sum(min_diff_pair[0]), sum(min_diff_pair[1]))
