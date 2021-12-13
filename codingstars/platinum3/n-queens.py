@@ -21,3 +21,18 @@ HINT:
  i+j = constant == upper diagonal
  i-j = constant == lower diagonal
 """
+
+def nqueen(i=0, j=0):
+    if row[i] or col[j]:
+        
+        return
+    
+    for i in range(n):
+        for j in range(n):
+            nqueen(j)
+        nqueen(i)
+n = int(input())
+row = [1 for x in range(n)]
+col = [1 for x in range(n)]
+ans = []
+nqueen()
